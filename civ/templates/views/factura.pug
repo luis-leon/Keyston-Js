@@ -1,0 +1,43 @@
+extends ../layouts/default
+
+block content
+  .container
+    img(src='images/logo.svg')
+    h1(align='center') Facturas
+    br
+    label Fecha
+      input(type='date').form-control  
+      br
+    .container
+      label Cliente
+      select(name='cliente').form-control
+          each Cliente in clientes
+            option(value='afd') #{Cliente.name}
+      br
+    .container
+      label Seleccione un producto
+      select(name='producto').form-control
+          each Productos in productos
+            option(value='afd') #{Productos.nombre}
+      br
+    .container
+      a(href='').btn.btn-lg.btn-primary Agregar
+    .container
+    if productos.length
+        h3(alignt="center") Productos a comprar
+        table.table.table.bordered.table-striped
+          thead.thead-dark
+            tr
+              th(scope='col') Nombre
+              th(scope='col') Descripcion
+              th(scope='col') Precio
+              
+          thbody
+          each Productos in productos
+            tr
+
+              td #{Productos.nombre}
+              td #{Productos.descripcion}
+              td #{Productos.price}
+              br
+    

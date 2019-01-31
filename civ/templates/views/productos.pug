@@ -1,0 +1,36 @@
+extends ../layouts/default
+
+block content
+	.container
+		#col-md-5.center-block.no-float.top-space.text-left
+			img(src='images/logo.svg')
+			h1(align='center') Consulta Articulos en Existencia
+				img(src='/images/img_carousel/productos.jpg' alt='New york' style='width:70%;' align='center')
+	
+	
+	.container
+		#col-md-5.center-block.no-float.top-space.text-left
+			if productos.length
+					h1(alignt="center") Vea los productos En Existencia
+					table.table.table.bordered.table-striped
+						thead.thead-dark
+							tr
+								th(scope='col') Nombre
+								th(scope='col') Descuento 3
+								th(scope='col') Descuento 2
+								th(scope='col') Descuento 1
+								th(scope='col') Descripcion
+								th(scope='col') Precio
+								
+						thbody
+						each Productos in productos
+							tr
+
+								td #{Productos.nombre}
+								td #{Productos.stock}
+								td #{Productos.descuento3}
+								td #{Productos.descuento2}
+								td #{Productos.descuento1}
+								td #{Productos.descripcion}
+								td #{Productos.price}
+								br

@@ -1,0 +1,24 @@
+extends ../layouts/default
+
+block content
+  .container
+    #col-md-5.center-block.no-float.top-space.text-left
+      img(src='images/logo.svg')
+      h1(align='center') Reportes
+        br
+        img(src='/images/img_carousel/reportes.jpg' alt='New york' style='width:70%;')
+  .container
+    #col-md-5.center-block.no-float.top-space.text-left
+      h1(alignt="center") Descargue los reportes
+      table.table.table.bordered.table-striped
+        thead.thead-dark
+          tr
+            th(scope='col') Reportes Disponibles
+                      
+        thbody
+          tr
+              td 
+                a(href='http://localhost:5488/templates/rkJTnK2ce', target='_blank') Reporte de Clientes
+                br
+                a(href='http://localhost:5488/templates/H1FmBhLkX', target='_blank') Reporte de Productos
+    

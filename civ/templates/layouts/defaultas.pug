@@ -1,0 +1,145 @@
+include ../mixins/flash-messages
+
+doctype html
+html
+
+	//- HTML HEADER
+	head
+		meta(charset="utf-8")
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		title= title || 'Ferreteria GC'
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+
+		//- BOOTSTRAP CSS 4.1.1
+		link(href="/styles/bootstrap.min.css", rel="stylesheet")
+
+		//- CUSTOMS CSS
+		link(href="css/main.css", rel="stylesheet")
+		
+		//- Customise the stylesheet for your site by editing /public/styles/site.less
+		//- All .less files will be automatically compiled and minified in production.
+		
+		
+		//- This file provides the default styling for the KeystoneJS Content Editor
+		if user && user.canAccessKeystone
+			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+
+		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- Safely remove this block if you are not targeting IE8
+		//-[if lt IE 9]
+			script(src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js")
+			script(src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js")
+		//-[endif]
+
+		//- Include template-specific stylesheets by extending the css block
+		block css
+
+		//- Add any other template-specific HEAD tags by extending the head block
+		block head
+
+	//- HTML BODY
+	body
+		.container-fluid
+			nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
+				a.navbar-brand
+					img.d-inline-block.align-top(src='images/logo.svg', width='30', height='30', alt='')
+					|     Control de Inventarios y Ventas
+
+				button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+					span.navbar-toggler-icon
+				#navbarNav.collapse.navbar-collapse
+					ul.navbar-nav.ml-auto
+						each link in navLinks
+							li.nav-item.active(class=(section == link.key ? 'active' : null)): a.nav-link(href=link.href)= link.label
+					ul.navbar-nav
+						if user
+							if user.canAccessKeystone
+								li.nav-item: a.nav-link(href='/keystone') Admin UI
+								li.nav-item: a.nav-link(href='/keystone/signout') Salir
+						else
+							li.nav-item: a.nav-link(href='/keystone/signin') Ingresar
+		.container
+			#col-md-5.center-block.no-float.top-space.text-center
+				#carouselExampleIndicators.carousel.slide(data-ride='carousel')
+					ol.carousel-indicators
+						li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+						li(data-target='#carouselExampleIndicators', data-slide-to='1')
+						li(data-target='#carouselExampleIndicators', data-slide-to='2')
+					.carousel-inner
+						.carousel-item.active
+							img.d-block.w-100(src='images/img_carousel/1.jpg', alt='First slide')
+							.carousel-caption.d-none.d-md-block
+								p Node.js® es un entorno de ejecución para JavaScript construido con el motor de JavaScript V8 de Chrome. El ecosistema de paquetes de Node.js, npm, es el ecosistema mas grande de librerías de código abierto en el mundo.
+						.carousel-item
+							img.d-block.w-100(src='images/img_carousel/1.jpg', alt='Second slide')
+							.carousel-caption.d-none.d-md-block
+								p MongoDB forma parte de la nueva familia de sistemas de base de datos NoSQL. En lugar de guardar los datos en tablas como se hace en las base de datos relacionales, MongoDB guarda estructuras de datos en documentos similares a JSON con un esquema dinámico (MongoDB utiliza una especificación llamada BSON), haciendo que la integración de los datos en ciertas aplicaciones sea más fácil y rápida.
+						.carousel-item
+							img.d-block.w-100(src='images/img_carousel/1.jpg', alt='Third slide')
+							.carousel-caption.d-none.d-md-block
+								p JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. Se define como orientado a objetos, basado en prototipos, imperativo, débilmente tipado y dinámico.
+					a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+						span.carousel-control-prev-icon(aria-hidden='true')
+						span.sr-only Previous
+					a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+						span.carousel-control-next-icon(aria-hidden='true')
+						span.sr-only Next
+
+		//- BOOTSTRAP SCRIPTS
+		//- JQUERY 3.3.1
+		script(src='/js/jquery/jquery-3.3.1.slim.min.js')
+		//- POPPERJS V.1
+		script(src='/js/popper/popper.min.js')
+		//-BOOTSTRAP JS 4.1.1
+		script(src='/js/bootstrap/bootstrap-4.1.1.min.js')
+						
+		//- BODY
+		#body
+
+			//- NOTE:
+			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
+			//- Remember to include it in your templates when you override the intro and content blocks!
+
+			//- The Intro block appears above flash messages (used for temporary information display)
+			block intro
+
+			//- Flash messages allow you to display once-off status messages to users, e.g. form
+			//- validation errors, success messages, etc.
+			+flash-messages(messages)
+
+			//- The content block should contain the body of your template's content
+			block content
+
+
+		//- FOOTER
+		.container: #footer
+
+			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
+			p Powered by <a href="http://keystonejs.com" target="_blank">Desarrollo Luis de Leon en KeystoneJS</a> and <a href="https://www.facebook.com/luisferdeleonn" target="_blank">Sigueme en Facebook</a>
+
+
+		//- JAVASCRIPT
+
+		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
+		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
+		//- you can upgrade to 2.1.4 (also bundled) for better performance.
+		
+
+		//- Popper Js
+
+		
+
+		//- Customise which Bootstrap javascript files are served by including
+		//- them specifically here, instead of bootstrap-3.3.5.min.js
+		
+		
+		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
+		//- which generate links to edit content for users who can access Keystone
+		if user && user.canAccessKeystone
+			script(src='/keystone/js/content/editor.js')
+
+		//- Add scripts that are globally required by your site here.
+
+		//- Include template-specific javascript files by extending the js block
+		block js

@@ -1,0 +1,37 @@
+extends ../layouts/default
+
+block content
+  .container
+    img(src='images/logo.svg')
+    h1(align='center') Registro de facturas
+    .container
+      label Cliente
+      h1=factura.id
+      -var i=0
+      -var t1=''
+      .container
+          each Factura in factura
+            -var Fac_det=Factura.id_detalle
+              label Factura no.
+              -i=i+1
+              .container
+                    label id Factura
+                    h1=i
+                    label Vendedor
+                    each users in Users
+                      -if (Factura.Usuario == users.id){
+                        h3= users.name.first
+                      -}
+                    br
+              .container
+                    each DetalleFactura in detalleFactura
+                      -if (Factura.id_detalle==DetalleFactura.slug ){
+                        label Cantidad
+                        h3= DetalleFactura.Cantidad
+                        label Producto
+                        each Productos in productos
+                          -if(DetalleFactura.CodigoArticulo==Productos.slug){
+                          h3=Productos.nombre
+                          -}
+                      -}
+                    hr   

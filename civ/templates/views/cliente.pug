@@ -1,0 +1,35 @@
+extends ../layouts/default
+
+block content
+	.container
+		#col-md-5.center-block.no-float.top-space.text-left
+			img(src='images/logo.svg')
+			h1(align='center') Consulta Cliente
+				br
+				img(src='/images/img_carousel/cliente.jpg' alt='New york' style='width:70%;')
+
+	.container
+		#col-md-5.center-block.no-float.top-space.text-left
+			if clientes.length
+					label Clientes En Existencia
+					table.table.table.bordered.table-striped
+						thead.thead-dark
+							tr
+								th(scope='col') email
+								th(scope='col') telefono
+								th(scope='col') direccion
+								th(scope='col') apellido
+								th(scope='col') nombre
+								th(scope='col') dpi
+								
+						thbody
+						each Cliente in clientes
+							tr
+						
+								td #{Cliente.email}
+								td #{Cliente.telefono}
+								td #{Cliente.direccion}
+								td #{Cliente.apellido}
+								td #{Cliente.name}
+								td #{Cliente.dpi}
+								br
